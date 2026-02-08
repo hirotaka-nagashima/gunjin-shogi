@@ -14,14 +14,14 @@ void Graphic::Initialize() {
   window_->Initialize();
 
   // Load images.
-  image_board_ = IMG_Load("resources/board.png");
-  image_piece_ = IMG_Load("resources/piece.png");
-  image_label_ = IMG_Load("resources/label.png");
-  image_supposition_label_ = IMG_Load("resources/supposition_label.png");
-  image_overlay_ = IMG_Load("resources/overlay.png");
-  image_hilight_ = IMG_Load("resources/hilight.png");
-  image_determining_button_ = IMG_Load("resources/determining_button.png");
-  image_cross_ = IMG_Load("resources/cross.png");
+  image_board_ = IMG_Load("src/resources/board.png");
+  image_piece_ = IMG_Load("src/resources/piece.png");
+  image_label_ = IMG_Load("src/resources/label.png");
+  image_supposition_label_ = IMG_Load("src/resources/supposition_label.png");
+  image_overlay_ = IMG_Load("src/resources/overlay.png");
+  image_hilight_ = IMG_Load("src/resources/hilight.png");
+  image_determining_button_ = IMG_Load("src/resources/determining_button.png");
+  image_cross_ = IMG_Load("src/resources/cross.png");
   if (!image_board_ || !image_piece_ || !image_label_ ||
       !image_supposition_label_ || !image_overlay_ || !image_hilight_ ||
       !image_determining_button_ || !image_cross_) {
@@ -30,9 +30,9 @@ void Graphic::Initialize() {
   }
   
   // Load fonts.
-  font_ = TTF_OpenFont("resources/font.ttf", 50);
-  small_font_ = TTF_OpenFont("resources/font.ttf", 25);
-  smaller_font_ = TTF_OpenFont("resources/font.ttf", 20);
+  font_ = TTF_OpenFont("src/resources/font.ttf", 50);
+  small_font_ = TTF_OpenFont("src/resources/font.ttf", 25);
+  smaller_font_ = TTF_OpenFont("src/resources/font.ttf", 20);
   if (!font_ || !small_font_) {
     fprintf(stderr, "ERROR: %s\n", TTF_GetError());
     exit(-1);
@@ -101,7 +101,7 @@ void Graphic::DisplayResult(const Board &board,
   }
 
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 
   // Wait.
   window_->WaitClick(false);
@@ -117,7 +117,7 @@ void Graphic::DisplayBoard(const Board &board, const Character &character) {
 
   // Draw a player's score.
   char score[10];
-  sprintf_s(score, "%+2d", character.score());
+  snprintf(score, sizeof(score), "%+2d", character.score());
   window_->DrawString(score, 305, 10, smaller_font_);
 
   // Draw pieces.
@@ -155,7 +155,7 @@ void Graphic::DisplayBoard(const Board &board, const Character &character) {
     }
   }
 
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 void Graphic::WaitNextPlayer(const std::string &name) {
@@ -169,7 +169,7 @@ void Graphic::WaitNextPlayer(const std::string &name) {
   window_->DrawStringCenter("If so, click anywhere.", 260, small_font_);
 
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 
   // Wait.
   window()->WaitClick(false);
@@ -194,7 +194,7 @@ void Graphic::HilightSquare(const Point &point, int characters_id) {
   window_->DrawSingleImage(image_hilight_, dest.x, dest.y);
   
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 void Graphic::UnhilightSquares(const Board &board, int character_id) {
@@ -224,12 +224,12 @@ void Graphic::CrossCell(const Point &point, int characters_id) {
   window_->DrawSingleImage(image_cross_, dest.x, dest.y);
 
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 void Graphic::DisplayDeterminingButton() {
   window_->DrawSingleImage(image_determining_button_, 0, 50);
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 void Graphic::DisplayPiece(const Board &board, const Point &point,
@@ -283,7 +283,7 @@ void Graphic::DisplayPiece(const Board &board, const Point &point,
   }
 
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 Board::Piece::KindPiece Graphic::GetSupposition() {
@@ -334,7 +334,7 @@ void Graphic::DisplaySuppositionMenu() {
   }
 
   // Display.
-  SDL_Flip(window_->video_surface());
+  window_->UpdateSurface();
 }
 
 void Graphic::DrawPiece(bool piece_is_current_characters,

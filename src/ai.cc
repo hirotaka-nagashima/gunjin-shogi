@@ -10,7 +10,7 @@
 #include "board.h"
 
 const int Ai::kMaxTimesSwapPiecesRandomly = 2;
-const char *Ai::kFormationFileUrl = "resources/formations.txt";
+const char *Ai::kFormationFileUrl = "src/resources/formations.txt";
 
 void Ai::ReplacePieces() {
   LoadFormationRandomly();
@@ -158,22 +158,21 @@ void Ai::SupposeOpponentsFormation(const Board::Piece &ais_piece) {
 }
 
 void Ai::LoadFormationRandomly() {
-  FILE *file;
-  errno_t error = fopen_s(&file, kFormationFileUrl, "r");
-  if (error != 0) {
+  FILE *file = fopen(kFormationFileUrl, "r");
+  if (!file) {
     fprintf(stderr, "ERROR: %s is not existed.\n", kFormationFileUrl);
     exit(-1);
   }
 
   // Choose a formation randomly.
   int num_formations;
-  fscanf_s(file, "%d", &num_formations);
+  fscanf(file, "%d", &num_formations);
   int formation_id = rand() % num_formations;
 
   // Skip untill the choosen formation.
   int size_board = Board::kWidth * Board::kHeight / 2;
   for (int i = 0, dummy; i < size_board * formation_id; ++i)
-    fscanf_s(file, "%d", &dummy);
+    fscanf(file, "%d", &dummy);
 
   // Load the formation.
   for (int y = 0; y < Board::kHeight / 2; ++y) {
@@ -184,10 +183,10 @@ void Ai::LoadFormationRandomly() {
 
       // Read a piece.
       int temp_kind_piece;
-      fscanf_s(file, "%d", &temp_kind_piece);
+      fscanf(file, "%d", &temp_kind_piece);
       piece.piece = static_cast<Board::Piece::KindPiece>(temp_kind_piece);
       if (!piece.IsPiece()) {
-        fprintf_s(stderr, "ERROR: The formation file is unavailable.\n");
+        fprintf(stderr, "ERROR: The formation file is unavailable.\n");
         exit(-1);
       }
 

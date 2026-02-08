@@ -10,7 +10,7 @@
 #include "point.h"
 
 void Window::Initialize() {
-  if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "ERROR: " << SDL_GetError() << std::endl;
     exit(-1);
   }
@@ -18,22 +18,29 @@ void Window::Initialize() {
     std::cerr << "ERROR: " << TTF_GetError() << std::endl;
     exit(-1);
   }
-  if (SDL_SetVideoMode(kWidth, kHeight, 16, SDL_HWSURFACE) == NULL) {
+  window_ = SDL_CreateWindow(kTitleName.c_str(), SDL_WINDOWPOS_CENTERED,
+                             SDL_WINDOWPOS_CENTERED, kWidth, kHeight, 0);
+  if (!window_) {
     std::cerr << "ERROR: " << SDL_GetError() << std::endl;
     exit(-1);
   }
-  SDL_WM_SetCaption(kTitleName.c_str(), kTitleName.c_str());
-  video_surface_ = SDL_GetVideoSurface();
+  video_surface_ = SDL_GetWindowSurface(window_);
 }
 
 void Window::Terminate() {
-  SDL_FreeSurface(video_surface_);
+  SDL_DestroyWindow(window_);
+  window_ = nullptr;
+  video_surface_ = nullptr;
   TTF_Quit();
   SDL_Quit();
 }
 
+void Window::UpdateSurface() const {
+  SDL_UpdateWindowSurface(window_);
+}
+
 void Window::ClearScreen() {
-  SDL_FillRect(video_surface_, 0, 0);
+  SDL_FillRect(video_surface_, nullptr, 0);
 }
 
 void Window::DrawSingleImage(SDL_Surface *image, int dest_x, int dest_y) {
@@ -48,7 +55,6 @@ void Window::DrawSingleImage(SDL_Surface *image, int dest_x, int dest_y) {
 
 void Window::DrawImage(SDL_Surface *image, int dest_x, int dest_y,
                        int id, int width, int height) {
-  assert(width == 0 || height == 0);
   SDL_Rect src, dest;
   src.x = (id % (image->w / width)) * width;
   src.y = (id / (image->w / width)) * height;
@@ -123,9 +129,13 @@ Point Window::WaitClick(bool distinguish_mouse_down) {
 
 void Window::WaitEnterKey() const {
   while (true) {
-    CheckClose();
-    Uint8 *key = SDL_GetKeyState(NULL);
-    if (key[SDLK_RETURN])
-      break;
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT)
+        exit(0);
+      if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RETURN)
+        return;
+    }
+    SDL_Delay(10);
   }
 }

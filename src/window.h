@@ -19,7 +19,9 @@ public:
   Window(int width, int height, std::string title)
       : kWidth(width),
         kHeight(height),
-        kTitleName(title) {}
+        kTitleName(title),
+        window_(nullptr),
+        video_surface_(nullptr) {}
 
   void Initialize();
   void Terminate();
@@ -40,11 +42,13 @@ public:
   void WaitEnterKey() const;
 
   SDL_Surface *video_surface() const { return video_surface_; }
+  void UpdateSurface() const;
 
 private:
   const int kWidth;
   const int kHeight;
   const std::string kTitleName;
+  SDL_Window *window_;
   SDL_Surface *video_surface_;
 };
 
