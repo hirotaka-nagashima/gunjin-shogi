@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2016 @hirodotexe. All rights reserved.
+// Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 // This class is used for drawing image and text to a window.
 //-----------------------------------------------------------------------------

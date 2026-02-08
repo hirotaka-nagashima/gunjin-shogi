@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2016 @hirodotexe. All rights reserved.
+// Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 // 2017/01/13: Updated "Point."
 // 2016/11/06: Reconstructed.

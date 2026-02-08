@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2016 @hirodotexe. All rights reserved.
+// Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 // This class is used for gui program based on sdl.
 // You shouldn't edit this file.

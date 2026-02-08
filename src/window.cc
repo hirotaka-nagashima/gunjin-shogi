@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright (c) 2016 @hirodotexe. All rights reserved.
+// Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 // Information on this class is described in "window.h".
 //-----------------------------------------------------------------------------
