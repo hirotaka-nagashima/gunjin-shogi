@@ -4,8 +4,8 @@
 // This class is used for drawing image and text to a window.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_CHARACTOR_H_
-#define STRATEGO_CHARACTOR_H_
+#ifndef GUNJIN_SHOGI_CHARACTOR_H_
+#define GUNJIN_SHOGI_CHARACTOR_H_
 
 #include <string>
 #include "board.h"
@@ -53,4 +53,4 @@ protected:
   CharacterType type_;
 };
 
-#endif  // STRATEGO_CHARACTOR_H_
+#endif  // GUNJIN_SHOGI_CHARACTOR_H_

@@ -2,8 +2,8 @@
 // Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_POINT_H_
-#define STRATEGO_POINT_H_
+#ifndef GUNJIN_SHOGI_POINT_H_
+#define GUNJIN_SHOGI_POINT_H_
 
 // 2d point, vector.
 struct Point {
@@ -41,4 +41,4 @@ struct Move {
   Point dest;
 };
 
-#endif  // STRATEGO_POINT_H_
+#endif  // GUNJIN_SHOGI_POINT_H_

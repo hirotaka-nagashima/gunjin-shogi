@@ -16,7 +16,7 @@ class Character;
 class Board;
 class Graphic {
 public:
-  Graphic() { window_ = new Window(350, 450, "Stratego"); }
+  Graphic() { window_ = new Window(350, 450, "Gunjin Shogi"); }
   ~Graphic() { delete window_; }
 
   void Initialize();

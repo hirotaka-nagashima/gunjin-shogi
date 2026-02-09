@@ -2,8 +2,8 @@
 // Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_PLAYER_H_
-#define STRATEGO_PLAYER_H_
+#ifndef GUNJIN_SHOGI_PLAYER_H_
+#define GUNJIN_SHOGI_PLAYER_H_
 
 #include <string>
 #include "character.h"
@@ -27,4 +27,4 @@ private:
   Graphic * const graphic_;
 };
 
-#endif  // STRATEGO_PLAYER_H_
+#endif  // GUNJIN_SHOGI_PLAYER_H_

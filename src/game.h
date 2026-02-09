@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
 // Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
-// This class is main class of stratego.
+// This class is main class of gunjin shogi.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_GAME_H_
-#define STRATEGO_GAME_H_
+#ifndef GUNJIN_SHOGI_GAME_H_
+#define GUNJIN_SHOGI_GAME_H_
 
 #include "board.h"
 #include "player.h"
@@ -57,4 +57,4 @@ private:
   bool play_with_player_;
 };
 
-#endif  // STRATEGO_GAME_H_
+#endif  // GUNJIN_SHOGI_GAME_H_

@@ -2,8 +2,8 @@
 // Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_BOARD_H_
-#define STRATEGO_BOARD_H_
+#ifndef GUNJIN_SHOGI_BOARD_H_
+#define GUNJIN_SHOGI_BOARD_H_
 
 #include <vector>
 #include "point.h"
@@ -130,4 +130,4 @@ private:
   std::vector<Log> log_;
 };
 
-#endif  // STRATEGO_BOARD_H_
+#endif  // GUNJIN_SHOGI_BOARD_H_

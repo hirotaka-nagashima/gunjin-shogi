@@ -2,8 +2,8 @@
 // Copyright (c) 2016 Hirotaka Nagashima. All rights reserved.
 //-----------------------------------------------------------------------------
 
-#ifndef STRATEGO_AI_H_
-#define STRATEGO_AI_H_
+#ifndef GUNJIN_SHOGI_AI_H_
+#define GUNJIN_SHOGI_AI_H_
 
 #include <string>
 #include <vector>
@@ -29,4 +29,4 @@ protected:
   void ReplaceSomePiecesRandomly();
 };
 
-#endif  // STRATEGO_AI_H_
+#endif  // GUNJIN_SHOGI_AI_H_
